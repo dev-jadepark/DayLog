@@ -1,6 +1,6 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {Platform, Pressable, StyleSheet, Text, View} from 'react-native';
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function FloatingWriteButton() {
@@ -12,14 +12,15 @@ function FloatingWriteButton() {
   return (
     <View style={styles.wrapper}>
       <Pressable
-        style={({pressed}) => [
+        style={({ pressed }) => [
           styles.button,
           Platform.OS === 'ios' && {
             opacity: pressed ? 0.6 : 1,
           },
         ]}
-        android_ripple={{color: 'white'}}
-        onPress={onPress}>
+        android_ripple={{ color: 'white' }}
+        onPress={onPress}
+      >
         <Icon name="add" size={24} style={styles.icon} />
       </Pressable>
     </View>
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     //안드로이드에서 물결 효과가 영역 밖으로 나가지 않도록 설정
     //ios에서는 overflow가 hidden일 경우 그림자가 보여지지 않음
-    overflow: Platform.select({android: 'hidden'}),
+    overflow: Platform.select({ android: 'hidden' }),
   },
   button: {
     width: 56,
