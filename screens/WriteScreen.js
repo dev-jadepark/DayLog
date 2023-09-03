@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
-import {KeyboardAvoidingView, Platform, StyleSheet, View} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import WriteHeader from '../components/WriteHeader';
+import {useNavigation} from '@react-navigation/native';
+import React, {useContext, useState} from 'react';
+import {StyleSheet, KeyboardAvoidingView, Platform} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import WriteEditor from '../components/WriteEditor';
-import { useNavigation } from '@react-navigation/native';
+import WriteHeader from '../components/WriteHeader';
 import LogContext from '../contexts/LogContext';
 
 function WriteScreen() {
@@ -16,6 +16,7 @@ function WriteScreen() {
     onCreate({
       title,
       body,
+      // 날짜를 문자열로 변환
       date: new Date().toISOString(),
     });
     navigation.pop();
@@ -27,7 +28,7 @@ function WriteScreen() {
         style={styles.avoidingView}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <WriteHeader onSave={onSave} />
-        <WriteEditor 
+        <WriteEditor
           title={title}
           body={body}
           onChangeTitle={setTitle}
@@ -35,7 +36,7 @@ function WriteScreen() {
         />
       </KeyboardAvoidingView>
     </SafeAreaView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

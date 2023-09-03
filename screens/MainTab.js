@@ -11,7 +11,7 @@ function MainTab() {
   return (
     <Tab.Navigator
       screenOptions={{
-        showLabel: false,
+        tabBarShowLabel: false,
         activeTintColor: '#009688',
       }}>
       <Tab.Screen
@@ -23,9 +23,24 @@ function MainTab() {
           ),
         }}
       />
-      <Tab.Screen name="Calendar" component={CalendarScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
-      {/* <Tab.Screen name="WebView" component={InAppWebViewScreen} /> */}
+      <Tab.Screen
+        name="Calendar"
+        component={CalendarScreen}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name="event" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name="search" size={size} color={color} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
