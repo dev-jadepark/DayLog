@@ -1,15 +1,36 @@
 import React from 'react';
 import {createContext, useState} from 'react';
+import {v4 as uuidv4} from 'uuid';
 
-const LogContext = createContext(); //새로운 컨텍스트를 만들때 사용하는 메서드
+// const LogContext = createContext('안녕하세요.');
 
-function LogContextProvider({children}) {
-  const [text, setText] = useState('');
+const LogContext = createContext();
+
+export function LogContextProvider({children}) {
+  // const [text, setText] = useState('');
+  // return (
+  //   <LogContext.Provider value={{text, setText}}>
+  //     {children}
+  //   </LogContext.Provider>
+  // );
+
+  const [logs, setLogs] = useState([]);
+
+  const onCreate = ({title, body, date}) => {
+    const log = {
+      id: uuidv4(),
+      title,
+      body,
+      date,
+    };
+    setLogs([log, ...logs]);
+  };
+
   return (
-    <LogContext.Provider value={{text, setText}}>
+    <LogContext.Provider value={{logs, onCreate}}>
       {children}
     </LogContext.Provider>
   );
 }
 
-export default LogContextProvider;
+export default LogContext;
